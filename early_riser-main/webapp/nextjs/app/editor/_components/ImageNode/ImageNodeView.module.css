@@ -1,0 +1,185 @@
+.imageContainer {
+  position: relative;
+  display: inline-block;
+  margin: 1em 0;
+  line-height: 0;
+  overflow: visible;
+}
+
+.imageContainer img {
+  max-width: 100%;
+  border-radius: 4px;
+  display: block;
+  cursor: default;
+}
+
+/* 選択状態 */
+.imageSelected img {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* リサイズ中はスムーズに */
+.imageResizing {
+  user-select: none;
+}
+
+.imageResizing img {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* --- リサイズハンドル共通 --- */
+.resizeHandle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+}
+
+/* JSで制御する表示状態 */
+.resizeHandleVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 角ハンドル（四隅） */
+.resizeHandleCorner {
+  width: 12px;
+  height: 12px;
+  background: #2563eb;
+  border: 2px solid white;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.resizeHandleCorner:hover {
+  background: #1d4ed8;
+  transform: scale(1.3);
+}
+
+/* 辺ハンドル（上下左右） */
+.resizeHandleEdge {
+  background: #2563eb;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.resizeHandleEdge:hover {
+  background: #1d4ed8;
+}
+
+/* --- 各方向の位置 --- */
+
+/* 四隅 */
+.handleNW {
+  top: -2px;
+  left: -2px;
+}
+
+.handleNE {
+  top: -2px;
+  right: -2px;
+}
+
+.handleSE {
+  bottom: -2px;
+  right: -2px;
+}
+
+.handleSW {
+  bottom: -2px;
+  left: -2px;
+}
+
+/* 上下の辺（横長バー） */
+.handleN {
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 6px;
+}
+
+.handleS {
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 6px;
+}
+
+/* 左右の辺（縦長バー） */
+.handleE {
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 32px;
+}
+
+.handleW {
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 32px;
+}
+
+/* サイズ表示インジケーター */
+.sizeIndicator {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 削除ボタン */
+.imageDeleteButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 2;
+}
+
+/* JSで制御する表示状態 */
+.imageDeleteButtonVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.imageDeleteButton:hover {
+  background-color: rgba(220, 53, 69, 0.9);
+}
+
+.imageDeleteButton:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
