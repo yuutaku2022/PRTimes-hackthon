@@ -5,7 +5,8 @@ import { PRESS_RELEASE_ID } from './_lib/constants';
 // サーバーコンポーネントとして初期データを取得し、クライアントの Editor に渡す
 export default async function EditorPage() {
   try {
-    const res = await fetch(`/api/press-releases/${PRESS_RELEASE_ID}`, { cache: 'no-store' });
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    const res = await fetch(`${apiUrl}/api/press-releases/${PRESS_RELEASE_ID}`, { cache: 'no-store' });
     if (!res.ok) {
       return (
         <div className={styles.container}>
